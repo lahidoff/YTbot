@@ -1,15 +1,6 @@
-# Используем официальный образ Python
 FROM python:3.11-slim
-
-# Устанавливаем рабочую директорию
 WORKDIR /app
-
-# Копируем requirements.txt и устанавливаем зависимости
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-
-# Копируем все файлы проекта (кроме certs.json, его добавим позже)
-COPY bot.py .
-
-# Указываем команду для запуска бота
+COPY . .  # Эта строка копирует все файлы, включая certs.json
 CMD ["python", "bot.py"]
